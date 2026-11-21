@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Jumana, From Moora ♥</title>
+
+  <!-- Google Fonts: Lora (warm editorial serif) & Inter (soft, clean sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Warm Rose, Cream, Dusty Peach & Plum-Charcoal Night Palette -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FFFDF9',
+              100: '#FCF6EE',
+              200: '#F5E9DC',
+            },
+            blush: {
+              50: '#FDF4F2',
+              100: '#FBE8E4',
+              200: '#F4CFC8',
+              300: '#E7ADA2',
+              400: '#D6867A',
+              500: '#BF6B5F',
+            },
+            peach: {
+              100: '#FCEEE4',
+              200: '#F7D9C4',
+              300: '#EBB99A',
+              400: '#DA9670',
+            },
+            cocoa: {
+              500: '#8A736B',
+              600: '#6E5850',
+              700: '#54413B',
+              800: '#3B2D28',
+            },
+            plum: {
+              700: '#3D2F38',
+              800: '#2A2027',
+              900: '#1D161C',
+              950: '#151015',
+            },
+            amberwarm: {
+              200: '#F4D9B6',
+              300: '#E6BD8E',
+            },
+          },
+          boxShadow: {
+            cozy: '0 12px 34px -12px rgba(132, 86, 74, 0.13)',
+            'cozy-dark': '0 14px 36px -12px rgba(0, 0, 0, 0.52)',
+            'soft-glow': '0 0 28px rgba(231, 173, 162, 0.35)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Gentle Custom Animations & Stationery Texture -->
+  <style>
+    /* Subtle rising chamomile steam */
+    @keyframes steamFloat {
+      0% {
+        transform: translateY(6px) scaleX(0.95);
+        opacity: 0;
+      }
+      35% {
+        opacity: 0.65;
+      }
+      75% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-20px) scaleX(1.08);
+        opacity: 0;
+      }
+    }
+
+    .steam-curl-1 {
+      animation: steamFloat 4s ease-in-out infinite;
+    }
+    .steam-curl-2 {
+      animation: steamFloat 4.6s ease-in-out 1.4s infinite;
+    }
+
+    /* Tiny heart gently floating up inside the warm tea steam */
+    @keyframes heartSteamRise {
+      0% {
+        transform: translateY(10px) scale(0.75);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.9;
+      }
+      75% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-26px) scale(1.08);
+        opacity: 0;
+      }
+    }
+
+    .steam-heart {
+      animation: heartSteamRise 4.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    /* Soft ambient bobbing for the tea mug */
+    @keyframes cozyFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    .mug-float {
+      animation: cozyFloat 5.2s ease-in-out infinite;
+    }
+
+    /* Very gentle floating background petals & tiny hearts */
+    @keyframes driftUpSlow {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      18% {
+        opacity: 0.38;
+      }
+      82% {
+        opacity: 0.28;
+      }
+      100% {
+        transform: translateY(-108vh) translateX(24px) rotate(110deg);
+        opacity: 0;
+      }
+    }
+
+    .bg-floater {
+      position: fixed;
+      bottom: -36px;
+      pointer-events: none;
+      z-index: 0;
+      animation-name: driftUpSlow;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    /* Smooth fade + gentle slide when opening a new note */
+    @keyframes softNoteEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .note-fade-in {
+      animation: softNoteEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Warm glowing pulse for the Hug button */
+    @keyframes hugGlowPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(214, 134, 122, 0.55);
+      }
+      65% {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 22px rgba(214, 134, 122, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(214, 134, 122, 0);
+      }
+    }
+
+    .hug-pulse-active {
+      animation: hugGlowPulse 0.9s ease-out;
+    }
+
+    /* Upward floating hearts when Jumana taps "Hug from Moora" */
+    @keyframes heartBurstUp {
+      0% {
+        transform: translate(-50%, -50%) scale(0.45) rotate(0deg);
+        opacity: 0.95;
+      }
+      65% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translate(var(--hx), var(--hy)) scale(1.15) rotate(var(--hrot));
+        opacity: 0;
+      }
+    }
+
+    .hug-burst-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      animation: heartBurstUp 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Warm stationery subtle paper lines for the personal love letter */
+    .stationery-card {
+      background-image:
+        radial-gradient(rgba(214, 134, 122, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 253, 249, 0.97) 0%, rgba(251, 232, 228, 0.38) 100%);
+      background-size: 22px 22px, 100% 100%;
+    }
+
+    .dark .stationery-card {
+      background-image:
+        radial-gradient(rgba(231, 173, 162, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(42, 32, 39, 0.96) 0%, rgba(29, 22, 28, 0.98) 100%);
+      background-size: 22px 22px, 100% 100%;
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .steam-curl-1,
+      .steam-curl-2,
+      .steam-heart,
+      .mug-float,
+      .bg-floater {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body
+  class="min-h-screen overflow-x-hidden bg-cream-100 text-cocoa-800 antialiased transition-colors duration-500 dark:bg-plum-950 dark:text-cream-100/90 selection:bg-blush-200 dark:selection:bg-blush-500/35"
+>
+  <!-- ===================================================================== -->
+  <!-- SUBTLE FLOATING PETALS & TINY HEARTS BACKGROUND                       -->
+  <!-- ===================================================================== -->
+  <div id="ambient-floaters" aria-hidden="true" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. QUIET TOP BAR                                                      -->
+  <!-- ===================================================================== -->
+  <header class="relative z-20 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-5 pb-2">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <!-- Left: Delicate handmade signature -->
+      <p class="font-serif italic text-sm sm:text-base text-cocoa-600 dark:text-blush-200/85 tracking-wide">
+        for Jumana, from Moora <span class="text-blush-400 dark:text-blush-300 not-italic">♥</span>
+      </p>
+
+      <!-- Right: Two quiet pill toggles (Soft Rain & Night Mode) -->
+      <div class="flex items-center gap-2">
+        <!-- Soft Rain Web Audio Toggle (Strictly OFF by default) -->
+        <button
+          id="rain-toggle-btn"
+          type="button"
+          aria-pressed="false"
+          class="inline-flex items-center gap-1.5 rounded-full bg-cream-50/85 dark:bg-plum-800/85 hover:bg-blush-50 dark:hover:bg-plum-700 border border-blush-200/75 dark:border-plum-700 px-3.5 py-2 text-xs sm:text-sm font-medium text-cocoa-700 dark:text-cream-100/85 shadow-sm backdrop-blur-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300"
+          title="Play or pause gentle rain sound"
+        >
+          <svg id="rain-icon-off" class="w-4 h-4 text-blush-400 dark:text-blush-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+          </svg>
+          <svg id="rain-icon-on" class="w-4 h-4 text-blush-500 dark:text-amberwarm-300 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 13.5zM8 20l1-2m4 2l1-2m4 2l1-2" />
+          </svg>
+          <span id="rain-label">Soft Rain</span>
+        </button>
+
+        <!-- Night Mode Toggle -->
+        <button
+          id="theme-toggle-btn"
+          type="button"
+          aria-pressed="false"
+          class="inline-flex items-center gap-1.5 rounded-full bg-cream-50/85 dark:bg-plum-800/85 hover:bg-blush-50 dark:hover:bg-plum-700 border border-blush-200/75 dark:border-plum-700 px-3.5 py-2 text-xs sm:text-sm font-medium text-cocoa-700 dark:text-cream-100/85 shadow-sm backdrop-blur-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300"
+          title="Switch between Cozy Light Mode and Soft Night Mode"
+        >
+          <!-- Moon icon (visible in Light Mode) -->
+          <svg id="theme-icon-moon" class="w-4 h-4 text-blush-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>
+          <!-- Sun icon (visible in Night Mode) -->
+          <svg id="theme-icon-sun" class="w-4 h-4 text-amberwarm-300 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>
+          <span id="theme-label">Night Mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN COZY COLUMN                                                      -->
+  <!-- ===================================================================== -->
+  <main class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-4 pb-16 space-y-7">
+
+    <!-- =================================================================== -->
+    <!-- 2. WARM HERO SECTION                                                -->
+    <!-- =================================================================== -->
+    <section
+      class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-cream-50 via-blush-50/80 to-peach-100/55 dark:from-plum-800/95 dark:via-plum-900 dark:to-plum-800/80 border border-blush-200/70 dark:border-plum-700/80 px-6 py-10 sm:px-11 sm:py-13 text-center shadow-cozy dark:shadow-cozy-dark"
+    >
+      <!-- Subtle warm corner aura -->
+      <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-16 h-52 w-52 rounded-full bg-peach-200/35 dark:bg-blush-500/10 blur-3xl"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute -bottom-20 -right-16 h-56 w-56 rounded-full bg-blush-200/40 dark:bg-amberwarm-300/10 blur-3xl"></div>
+
+      <!-- Minimal Animated SVG: Steaming Cup of Chamomile Tea with Rising Heart -->
+      <div class="relative mx-auto mb-5 w-36 h-36 sm:w-40 sm:h-40 flex items-center justify-center">
+        <svg viewBox="0 0 200 200" class="w-full h-full mug-float" role="img" aria-label="A warm steaming cup of chamomile tea with a tiny heart rising in the steam">
+          <!-- Soft warm glow behind the mug -->
+          <circle cx="100" cy="116" r="68" class="fill-peach-100/85 dark:fill-blush-400/10" />
+
+          <!-- Gentle steam curls -->
+          <path
+            d="M80 78 C75 66, 86 58, 81 45"
+            fill="none"
+            stroke-width="3"
+            stroke-linecap="round"
+            class="stroke-blush-300/80 dark:stroke-amberwarm-200/55 steam-curl-1"
+          />
+          <path
+            d="M120 79 C116 67, 126 59, 120 47"
+            fill="none"
+            stroke-width="3"
+            stroke-linecap="round"
+            class="stroke-peach-300/85 dark:stroke-blush-300/55 steam-curl-2"
+          />
+
+          <!-- Tiny floating heart rising right in the center steam -->
+          <g class="steam-heart">
+            <path
+              d="M100 62 C100 62, 91 56, 91 50.5 C91 47.4, 93.4 45.5, 96 45.5 C97.9 45.5, 99.3 46.6, 100 48 C100.7 46.6, 102.1 45.5, 104 45.5 C106.6 45.5, 109 47.4, 109 50.5 C109 56, 100 62, 100 62 Z"
+              class="fill-blush-400 dark:fill-blush-300"
+            />
+          </g>
+
+          <!-- Saucer -->
+          <ellipse cx="100" cy="158" rx="54" ry="10" class="fill-blush-200/75 dark:fill-plum-700" />
+          <ellipse cx="100" cy="156" rx="40" ry="6" class="fill-blush-100 dark:fill-plum-800" />
+
+          <!-- Mug Handle -->
+          <path
+            d="M138 102 C161 102, 162 136, 136 138"
+            fill="none"
+            stroke-width="10"
+            stroke-linecap="round"
+            class="stroke-blush-300 dark:stroke-blush-400/75"
+          />
+          <path
+            d="M138 102 C157 102, 158 133, 136 136"
+            fill="none"
+            stroke-width="4.5"
+            stroke-linecap="round"
+            class="stroke-blush-100 dark:stroke-plum-800"
+          />
+
+          <!-- Mug Body -->
+          <path
+            d="M58 92 L142 92 L138 140 C137 151, 125 156, 100 156 C75 156, 63 151, 62 140 Z"
+            class="fill-cream-50 dark:fill-plum-800 stroke-blush-300 dark:stroke-blush-300/65"
+            stroke-width="3.2"
+          />
+
+          <!-- Chamomile Tea Surface -->
+          <ellipse cx="100" cy="92" rx="42" ry="9.5" class="fill-peach-100 dark:fill-amberwarm-300/35 stroke-blush-300 dark:stroke-blush-300/65" stroke-width="2.8" />
+          <ellipse cx="100" cy="93" rx="34" ry="6" class="fill-amberwarm-300/65 dark:fill-amberwarm-300/50" />
+
+          <!-- Tea bag string & small tag -->
+          <path d="M122 93 Q127 108 126 125" fill="none" stroke-width="1.8" class="stroke-cocoa-500/60 dark:stroke-amberwarm-200/55" />
+          <rect x="119" y="123" width="13" height="15" rx="3.5" class="fill-blush-100 dark:fill-plum-700 stroke-blush-300 dark:stroke-blush-300/60" stroke-width="1.4" />
+          <circle cx="125.5" cy="130.5" r="2" class="fill-blush-400 dark:fill-blush-300" />
+
+          <!-- Tiny subtle heart painted on the mug -->
+          <path
+            d="M96 134 C96 134, 86 127.5, 86 121.5 C86 118.2, 88.6 116, 91.5 116 C93.6 116, 95.1 117.2, 96 118.8 C96.9 117.2, 98.4 116, 100.5 116 C103.4 116, 106 118.2, 106 121.5 C106 127.5, 96 134, 96 134 Z"
+            class="fill-blush-300/90 dark:fill-blush-400/80"
+          />
+        </svg>
+      </div>
+
+      <!-- Headline & Warm Personal Greeting -->
+      <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-cocoa-800 dark:text-cream-100 leading-snug tracking-tight">
+        Hey Jumana, hate seeing you sick.
+      </h1>
+
+      <p class="mt-4 max-w-xl mx-auto text-base sm:text-[1.05rem] text-cocoa-700/90 dark:text-cream-100/80 leading-relaxed">
+        I made this little corner for you so you have something warm to look at while you rest. Don't worry about replying to anyone or doing anything today. Just stay under your blanket and let yourself heal. I'm right here whenever you need me.
+        <span class="block mt-2 font-serif italic text-blush-500 dark:text-blush-300">— Moora</span>
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 3. "LITTLE NOTES FROM ME" — INTERACTIVE NOTE CARD                   -->
+    <!-- =================================================================== -->
+    <section
+      id="notes-section"
+      class="rounded-3xl bg-cream-50/95 dark:bg-plum-900/95 border border-blush-200/75 dark:border-plum-700/80 p-6 sm:p-8 shadow-cozy dark:shadow-cozy-dark transition-colors duration-300"
+    >
+      <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-cocoa-800 dark:text-cream-100">
+            Little Notes From Me
+          </h2>
+          <p class="mt-1 text-sm text-cocoa-600 dark:text-cream-100/65 leading-relaxed">
+            Whenever you feel bored, tired, or just want a reminder of how much I care about you, tap below.
+          </p>
+        </div>
+
+        <span
+          id="note-counter"
+          class="shrink-0 rounded-full bg-blush-100 dark:bg-plum-800 border border-blush-200/60 dark:border-plum-700 px-3 py-1 text-xs font-medium text-blush-500 dark:text-blush-300"
+        >
+          Note 1 of 18
+        </span>
+      </div>
+
+      <!-- Envelope-style warm note container -->
+      <div
+        class="relative my-5 min-h-[152px] flex flex-col justify-center rounded-2xl bg-gradient-to-br from-blush-50/90 via-cream-100/80 to-peach-100/60 dark:from-plum-800/90 dark:to-plum-950/80 border border-blush-200/65 dark:border-plum-700/70 px-6 py-6 sm:px-8"
+      >
+        <span aria-hidden="true" class="absolute top-3 left-4 font-serif text-3xl text-blush-300/80 dark:text-blush-300/35 leading-none select-none">“</span>
+        <p
+          id="note-display"
+          class="relative z-10 font-serif text-base sm:text-lg text-cocoa-800 dark:text-cream-100/95 leading-relaxed text-center"
+        >
+          I genuinely hate that you're not feeling well right now. If I could take this sickness from you so you could just sleep peacefully, I would in a second.
+        </p>
+        <span aria-hidden="true" class="absolute bottom-2 right-4 font-serif text-3xl text-blush-300/80 dark:text-blush-300/35 leading-none select-none">”</span>
+      </div>
+
+      <!-- Tactile Button to Open Next Note -->
+      <button
+        id="open-note-btn"
+        type="button"
+        class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-blush-400 hover:bg-blush-500 active:scale-[0.985] text-white font-medium text-sm sm:text-base px-5 py-3.5 shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        <span>Open a note from Moora</span>
+      </button>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TWO-COLUMN ROW ON TABLET/DESKTOP: NEED A HUG? + TINY CHECK-IN       -->
+    <!-- =================================================================== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- 4. "NEED A HUG?" INTERACTIVE LOVE BUTTON -->
+      <section
+        id="hug-section"
+        class="flex flex-col justify-between rounded-3xl bg-cream-50/95 dark:bg-plum-900/95 border border-blush-200/75 dark:border-plum-700/80 p-6 sm:p-7 shadow-cozy dark:shadow-cozy-dark transition-colors duration-300"
+      >
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-cocoa-800 dark:text-cream-100">
+            Need a Hug?
+          </h2>
+          <p class="mt-1 text-sm text-cocoa-600 dark:text-cream-100/65">
+            Tap anytime you want one. I've got endless ones for you.
+          </p>
+
+          <!-- Tactile Heart Button & Rotating Loving Phrase -->
+          <div class="my-6 flex flex-col items-center text-center">
+            <button
+              id="hug-btn"
+              type="button"
+              class="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-br from-blush-400 to-blush-500 hover:from-blush-500 hover:to-blush-500 active:scale-95 text-white font-medium text-base px-7 py-4 shadow-soft-glow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300"
+            >
+              <svg class="w-5 h-5 transition-transform duration-200 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+              </svg>
+              <span>Hug from Moora</span>
+            </button>
+
+            <p
+              id="hug-phrase"
+              class="mt-5 min-h-[3.2rem] flex items-center justify-center font-serif italic text-sm sm:text-base text-cocoa-700 dark:text-blush-200/90 leading-relaxed px-2"
+            >
+              Tap the button whenever you want a warm squeeze.
+            </p>
+          </div>
+        </div>
+
+        <!-- Saved Hug Counter -->
+        <div class="rounded-2xl bg-blush-50/85 dark:bg-plum-800/80 border border-blush-200/60 dark:border-plum-700/60 px-4 py-3 text-center">
+          <p class="text-sm font-medium text-blush-500 dark:text-blush-300">
+            <span id="hug-count">0</span> <span id="hug-word">hugs</span> sent to Jumana ♥
+          </p>
+          <p id="hug-subnote" class="mt-0.5 text-xs text-cocoa-600/85 dark:text-cream-100/55">
+            Every single one is real in spirit.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. "TINY CHECK-IN" — GENTLE LOVING CHECKLIST -->
+      <section
+        id="checkin-section"
+        class="flex flex-col justify-between rounded-3xl bg-cream-50/95 dark:bg-plum-900/95 border border-peach-200/80 dark:border-plum-700/80 p-6 sm:p-7 shadow-cozy dark:shadow-cozy-dark transition-colors duration-300"
+      >
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="font-serif text-2xl font-semibold text-cocoa-800 dark:text-cream-100">
+              Did you do these yet?
+            </h2>
+            <span
+              id="checkin-badge"
+              class="rounded-full bg-peach-100 dark:bg-plum-800 border border-peach-200/70 dark:border-plum-700 px-2.5 py-1 text-xs font-medium text-cocoa-700 dark:text-amberwarm-200"
+            >
+              0 / 5
+            </span>
+          </div>
+          <p class="mt-1 text-sm text-cocoa-600 dark:text-cream-100/65 mb-4">
+            Zero pressure—just me checking in on you.
+          </p>
+
+          <!-- Checklist items rendered via JS -->
+          <ul id="checkin-list" class="space-y-2.5"></ul>
+        </div>
+
+        <!-- Warm Human Micro-Reaction -->
+        <div class="mt-4 min-h-[3.25rem] flex items-center justify-center rounded-2xl bg-peach-100/65 dark:bg-plum-800/80 border border-peach-200/60 dark:border-plum-700/60 px-4 py-2.5 text-center">
+          <p id="checkin-reaction" class="text-xs sm:text-sm text-cocoa-700 dark:text-amberwarm-200/90 leading-snug">
+            Even just ticking one of these makes me happy, Jumana.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 6. "IF YOU CAN'T SETTLE DOWN" — SIMPLE CALMING BREATHING CIRCLE     -->
+    <!-- =================================================================== -->
+    <section
+      id="breathing-section"
+      class="rounded-3xl bg-cream-50/95 dark:bg-plum-900/95 border border-blush-200/75 dark:border-plum-700/80 p-6 sm:p-7 shadow-cozy dark:shadow-cozy-dark transition-colors duration-300"
+    >
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <!-- Left Text & Button -->
+        <div class="text-center sm:text-left max-w-sm">
+          <h2 class="font-serif text-xl sm:text-2xl font-semibold text-cocoa-800 dark:text-cream-100">
+            If You Can't Settle Down
+          </h2>
+          <p class="mt-1.5 text-sm text-cocoa-600 dark:text-cream-100/65 leading-relaxed">
+            If your head feels loud or you're trying to fall asleep, just watch the circle and breathe with it for a minute.
+          </p>
+
+          <button
+            id="breath-toggle-btn"
+            type="button"
+            class="mt-4 inline-flex items-center justify-center gap-2 rounded-2xl bg-blush-100 hover:bg-blush-200/80 dark:bg-plum-800 dark:hover:bg-plum-700 border border-blush-200 dark:border-plum-700 px-5 py-2.5 text-sm font-medium text-cocoa-800 dark:text-cream-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300"
+          >
+            <span id="breath-btn-text">Start breathing</span>
+          </button>
+        </div>
+
+        <!-- Right Compact Glowing Pastel Circle -->
+        <div class="flex flex-col items-center justify-center shrink-0">
+          <div class="relative flex items-center justify-center w-44 h-44">
+            <!-- Soft Outer Glow -->
+            <div
+              id="breath-outer"
+              class="absolute w-28 h-28 rounded-full bg-blush-200/45 dark:bg-blush-400/15 transition-transform duration-[4000ms] ease-in-out"
+              style="transform: scale(1);"
+            ></div>
+            <!-- Inner Warm Pastel Halo -->
+            <div
+              id="breath-mid"
+              class="absolute w-24 h-24 rounded-full bg-gradient-to-br from-blush-200/85 to-peach-200/85 dark:from-blush-400/35 dark:to-amberwarm-300/25 transition-transform duration-[4000ms] ease-in-out"
+              style="transform: scale(1);"
+            ></div>
+            <!-- Core Circle -->
+            <div
+              id="breath-core"
+              class="relative z-10 flex flex-col items-center justify-center w-24 h-24 rounded-full bg-cream-50/95 dark:bg-plum-800 border border-blush-300/75 dark:border-blush-300/40 shadow-sm transition-transform duration-[4000ms] ease-in-out text-center px-2"
+              style="transform: scale(1);"
+            >
+              <span id="breath-phase" class="font-serif text-xs sm:text-sm font-medium text-cocoa-800 dark:text-cream-100 leading-tight">
+                Ready
+              </span>
+              <span id="breath-seconds" class="text-[11px] text-blush-500 dark:text-blush-300 mt-1">
+                4 · 4 · 4
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 7. PERSONAL LOVE LETTER CARD (WARM TEXTURED STATIONERY)             -->
+    <!-- =================================================================== -->
+    <section
+      id="love-letter"
+      class="stationery-card relative overflow-hidden rounded-3xl border border-blush-200/85 dark:border-plum-700/85 px-6 py-8 sm:px-11 sm:py-11 shadow-cozy dark:shadow-cozy-dark"
+    >
+      <!-- Delicate corner heart stamp -->
+      <div aria-hidden="true" class="pointer-events-none absolute top-5 right-6 text-blush-300/55 dark:text-blush-300/25 text-xl select-none">
+        ♥
+      </div>
+
+      <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-cocoa-800 dark:text-cream-100 mb-6">
+        A little letter for you, Jumana
+      </h2>
+
+      <!-- =============================================================== -->
+      <!-- MOORA: YOU CAN EASILY EDIT ANY PARAGRAPH OF YOUR LETTER BELOW   -->
+      <!-- =============================================================== -->
+      <div class="space-y-4 font-serif text-[1.03rem] sm:text-lg leading-relaxed text-cocoa-800/90 dark:text-cream-100/85">
+        <p>Hey Jumana,</p>
+
+        <p>
+          I know being sick is the absolute worst—everything feels heavier, time moves weirdly slow, and you just want to feel normal again. I hate that I can't just snap my fingers and make it go away for you.
+        </p>
+
+        <p>
+          I just wanted you to have something small to open whenever you're lying there bored or feeling down, so you don't forget for even a second how deeply you're loved. You don't have to be strong every single day, and you definitely don't have to pretend you're okay when you're not.
+        </p>
+
+        <p>
+          Take all the time you need to sleep, drink something warm, and get your energy back. I'm right here, thinking about you nonstop, and counting down until you're feeling like yourself again.
+        </p>
+      </div>
+
+      <!-- LETTER SIGN-OFF (EASY TO EDIT) -->
+      <div class="mt-8 pt-6 border-t border-blush-200/70 dark:border-plum-700/70">
+        <p class="font-serif italic text-base sm:text-lg text-cocoa-700 dark:text-blush-200/90">
+          Get better soon, my love.
+        </p>
+        <p class="font-serif text-xl sm:text-2xl font-medium text-blush-500 dark:text-blush-300 mt-1">
+          Always yours, Moora ♥
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 8. QUIET FOOTER                                                     -->
+    <!-- =================================================================== -->
+    <footer class="text-center pt-2 pb-4">
+      <p class="font-serif italic text-sm text-cocoa-500 dark:text-cream-100/50">
+        Made with love by Moora, just for Jumana <span class="text-blush-400 dark:text-blush-300 not-italic">♥</span>
+      </p>
+    </footer>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- VANILLA JAVASCRIPT (SELF-CONTAINED, SAFE LOCALSTORAGE, SOFT RAIN)     -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* -------------------------------------------------------------------
+         GRACEFUL LOCALSTORAGE WRAPPER
+         Prevents errors in private browsing or restricted mobile webviews.
+      ------------------------------------------------------------------- */
+      const store = {
+        get(key, fallback = null) {
+          try {
+            const value = window.localStorage.getItem(key);
+            return value !== null ? value : fallback;
+          } catch (err) {
+            return fallback;
+          }
+        },
+        set(key, value) {
+          try {
+            window.localStorage.setItem(key, value);
+          } catch (err) {
+            // Silently ignore storage restrictions
+          }
+        },
+      };
+
+      /* -------------------------------------------------------------------
+         1. SUBTLE FLOATING PETALS & TINY HEARTS IN THE BACKGROUND
+      ------------------------------------------------------------------- */
+      function initAmbientFloaters() {
+        const container = document.getElementById('ambient-floaters');
+        if (!container) return;
+
+        const svgs = [
+          // Soft tiny heart
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.8-9.5-9.2C1.2 8.7 3.1 5 6.8 5c2.1 0 3.8 1.2 5.2 2.8C13.4 6.2 15.1 5 17.2 5c3.7 0 5.6 3.7 4.3 6.8C19.5 16.2 12 21 12 21z"/></svg>',
+          // Soft warm petal
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.5 7.5 6 12.5 8 17C10 20.5 14 20.5 16 17C18 12.5 16.5 7.5 12 3Z"/></svg>',
+        ];
+
+        const tints = [
+          'text-blush-300/60 dark:text-blush-300/20',
+          'text-peach-300/60 dark:text-amberwarm-300/18',
+          'text-blush-200/75 dark:text-blush-400/18',
+        ];
+
+        const total = 11;
+        for (let i = 0; i < total; i++) {
+          const item = document.createElement('div');
+          item.className = `bg-floater ${tints[i % tints.length]}`;
+          item.innerHTML = svgs[i % svgs.length];
+          item.style.left = `${(i * 9.1 + Math.random() * 4) % 95}%`;
+          item.style.animationDuration = `${18 + Math.random() * 14}s`;
+          item.style.animationDelay = `${-Math.random() * 22}s`;
+          container.appendChild(item);
+        }
+      }
+
+      /* -------------------------------------------------------------------
+         2. WARM COZY LIGHT MODE / SOFT NIGHT MODE TOGGLE
+      ------------------------------------------------------------------- */
+      function initThemeToggle() {
+        const html = document.documentElement;
+        const btn = document.getElementById('theme-toggle-btn');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const label = document.getElementById('theme-label');
+
+        function applyTheme(isNight) {
+          if (isNight) {
+            html.classList.add('dark');
+            moonIcon.classList.add('hidden');
+            sunIcon.classList.remove('hidden');
+            label.textContent = 'Light Mode';
+            btn.setAttribute('aria-pressed', 'true');
+          } else {
+            html.classList.remove('dark');
+            moonIcon.classList.remove('hidden');
+            sunIcon.classList.add('hidden');
+            label.textContent = 'Night Mode';
+            btn.setAttribute('aria-pressed', 'false');
+          }
+        }
+
+        const saved = store.get('jumana_theme', 'light');
+        applyTheme(saved === 'dark');
+
+        btn.addEventListener('click', () => {
+          const nextNight = !html.classList.contains('dark');
+          applyTheme(nextNight);
+          store.set('jumana_theme', nextNight ? 'dark' : 'light');
+        });
+      }
+
+      /* -------------------------------------------------------------------
+         3. "LITTLE NOTES FROM ME" — 18 HUMAN NOTES (NO BACK-TO-BACK REPEATS)
+      ------------------------------------------------------------------- */
+      function initNotesFromMoora() {
+        const notes = [
+          "I genuinely hate that you're not feeling well right now. If I could take this sickness from you so you could just sleep peacefully, I would in a second.",
+          "Hey, take a sip of water right now. Yes, even if you don't feel like it. Do it for me.",
+          "You don't have to be productive or figure anything out today. Being wrapped up like a burrito in your blanket is literally your only job right now.",
+          "Just wanted to remind you that I think about you way more than I probably admit. Really hope you feel even a little better than you did an hour ago.",
+          "Even when you're exhausted, sick, and stuck in bed, you're still my favorite person in the whole world.",
+          "Take your medicine on time, okay? Don't make me nag you about it—because you know I totally will.",
+          "Close your eyes for a bit if your head feels heavy. Everything else can wait until Jumana feels like herself again.",
+          "I miss your laugh already. Hurry up and get better so I can hear it again.",
+          "If you wake up in the middle of the night and can't sleep, just text me. Doesn't matter what time it is.",
+          "You're allowed to be a little grumpy when you're sick. I still love you just the same.",
+          "Every time you feel drained today, just remember I'm out here quietly praying you wake up feeling brand new tomorrow.",
+          "No stressing, no overthinking, no worrying about what you missed today. Put it all on pause for a bit.",
+          "I really wish I could be right there bringing you warm tea and making sure you're actually comfortable.",
+          "You spend so much time caring about everyone else. For once, just sit back and let yourself be cared for.",
+          "Can't wait for the moment you text me saying 'I finally feel good again.' Easily going to be the best message of my whole week.",
+          "Sending you the warmest forehead kiss right through this screen.",
+          "Rest your eyes, Jumana. You don't have to prove anything today. Just take it slow and heal.",
+          "I love you so much. On the good days, the messy days, and especially on the slow, heavy sick days like today.",
+        ];
+
+        const displayEl = document.getElementById('note-display');
+        const counterEl = document.getElementById('note-counter');
+        const openBtn = document.getElementById('open-note-btn');
+
+        let shuffledQueue = [];
+        let lastShownIndex = 0;
+        let seenInRound = 1;
+
+        function buildShuffledQueue(excludeIndex) {
+          const indices = notes.map((_, idx) => idx);
+          for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+          }
+          // Guarantee no back-to-back repeat across rounds
+          if (indices[0] === excludeIndex && indices.length > 1) {
+            [indices[0], indices[indices.length - 1]] = [indices[indices.length - 1], indices[0]];
+          }
+          return indices;
+        }
+
+        // Start with Note 1 displayed, remaining 17 shuffled in queue
+        shuffledQueue = buildShuffledQueue(0).filter((idx) => idx !== 0);
+        counterEl.textContent = `Note 1 of ${notes.length}`;
+
+        openBtn.addEventListener('click', () => {
+          if (shuffledQueue.length === 0) {
+            shuffledQueue = buildShuffledQueue(lastShownIndex);
+            seenInRound = 0;
+          }
+
+          const nextIndex = shuffledQueue.shift();
+          lastShownIndex = nextIndex;
+          seenInRound += 1;
+
+          // Trigger smooth fade/slide animation
+          displayEl.classList.remove('note-fade-in');
+          void displayEl.offsetWidth;
+          displayEl.textContent = notes[nextIndex];
+          displayEl.classList.add('note-fade-in');
+
+          counterEl.textContent = `Note ${seenInRound} of ${notes.length}`;
+        });
+      }
+
+      /* -------------------------------------------------------------------
+         4. "NEED A HUG?" BUTTON WITH FLOATING HEARTS & SAVED COUNT
+      ------------------------------------------------------------------- */
+      function initHugButton() {
+        const hugBtn = document.getElementById('hug-btn');
+        const phraseEl = document.getElementById('hug-phrase');
+        const countEl = document.getElementById('hug-count');
+        const wordEl = document.getElementById('hug-word');
+        const subnoteEl = document.getElementById('hug-subnote');
+
+        const hugPhrases = [
+          'Wrapping my arms around you tight (but gentle).',
+          'Consider yourself hugged for a full ten seconds.',
+          'Sending a warm hug and checking if you still have a fever.',
+          'Really wish this was a real hug right now, Jumana.',
+          'Pulling the blanket up over your shoulders. Stay warm.',
+          "Here's another one, just because you deserve a hundred today.",
+          'Holding you close until you feel better.',
+        ];
+
+        const heartSymbols = ['♥', '♡', '♥', '♡'];
+        const heartColors = ['#D6867A', '#E7ADA2', '#BF6B5F', '#EBB99A'];
+
+        let hugCount = parseInt(store.get('jumana_hug_count', '0'), 10);
+        if (Number.isNaN(hugCount) || hugCount < 0) hugCount = 0;
+
+        function renderHugCount() {
+          countEl.textContent = String(hugCount);
+          wordEl.textContent = hugCount === 1 ? 'hug' : 'hugs';
+
+          if (hugCount === 0) {
+            subnoteEl.textContent = 'Every single one is real in spirit.';
+          } else if (hugCount < 5) {
+            subnoteEl.textContent = 'Keeping you warm from over here.';
+          } else if (hugCount < 15) {
+            subnoteEl.textContent = 'You can tap this a thousand times if you want.';
+          } else {
+            subnoteEl.textContent = 'Unlimited hugs for my favorite person, always.';
+          }
+        }
+
+        renderHugCount();
+
+        function spawnFloatingHearts(originX, originY) {
+          const count = 11;
+          for (let i = 0; i < count; i++) {
+            const heart = document.createElement('span');
+            heart.className = 'hug-burst-heart select-none';
+            heart.textContent = heartSymbols[i % heartSymbols.length];
+            heart.style.color = heartColors[i % heartColors.length];
+            heart.style.fontSize = `${14 + Math.random() * 10}px`;
+
+            // Fan upwards in a soft, natural arc
+            const horizontalSpread = (Math.random() - 0.5) * 140;
+            const upwardDistance = -(75 + Math.random() * 95);
+            const rotation = (Math.random() - 0.5) * 45;
+
+            heart.style.left = `${originX + (Math.random() - 0.5) * 34}px`;
+            heart.style.top = `${originY}px`;
+            heart.style.setProperty('--hx', `${horizontalSpread}px`);
+            heart.style.setProperty('--hy', `${upwardDistance}px`);
+            heart.style.setProperty('--hrot', `${rotation}deg`);
+
+            document.body.appendChild(heart);
+            window.setTimeout(() => heart.remove(), 1500);
+          }
+        }
+
+        hugBtn.addEventListener('click', (e) => {
+          hugCount += 1;
+          store.set('jumana_hug_count', String(hugCount));
+          renderHugCount();
+
+          // Warm glow pulse on button
+          hugBtn.classList.remove('hug-pulse-active');
+          void hugBtn.offsetWidth;
+          hugBtn.classList.add('hug-pulse-active');
+
+          // Rotate loving phrase
+          const nextPhrase = hugPhrases[(hugCount - 1) % hugPhrases.length];
+          phraseEl.classList.remove('note-fade-in');
+          void phraseEl.offsetWidth;
+          phraseEl.textContent = nextPhrase;
+          phraseEl.classList.add('note-fade-in');
+
+          // Float soft hearts upward from the button
+          const rect = hugBtn.getBoundingClientRect();
+          const originX = e.clientX && e.clientX > 0 ? e.clientX : rect.left + rect.width / 2;
+          const originY = e.clientY && e.clientY > 0 ? e.clientY : rect.top + rect.height / 2;
+          spawnFloatingHearts(originX, originY);
+        });
+      }
+
+      /* -------------------------------------------------------------------
+         5. "TINY CHECK-IN" — LOVING CHECKLIST SAVED IN LOCALSTORAGE
+      ------------------------------------------------------------------- */
+      function initTinyCheckIn() {
+        const items = [
+          {
+            id: 'water',
+            text: 'Had a few sips of water',
+            reaction: 'Good, that genuinely makes me feel better ♥',
+          },
+          {
+            id: 'medicine',
+            text: 'Took my medicine',
+            reaction: 'Thank you. Proud of you for taking care of yourself.',
+          },
+          {
+            id: 'warm-drink',
+            text: 'Had something warm to eat or drink',
+            reaction: 'Warm tea or soup fixes at least half of everything.',
+          },
+          {
+            id: 'rest-eyes',
+            text: 'Rested my eyes or took a nap',
+            reaction: 'Honestly the best decision you could make today.',
+          },
+          {
+            id: 'no-guilt',
+            text: 'Let myself rest without feeling guilty',
+            reaction: 'You deserve all the rest in the world, Jumana.',
+          },
+        ];
+
+        const listEl = document.getElementById('checkin-list');
+        const badgeEl = document.getElementById('checkin-badge');
+        const reactionEl = document.getElementById('checkin-reaction');
+
+        let checkedState = {};
+        try {
+          const saved = store.get('jumana_checkin');
+          if (saved) checkedState = JSON.parse(saved) || {};
+        } catch (err) {
+          checkedState = {};
+        }
+
+        function updateBadge() {
+          const done = items.filter((item) => Boolean(checkedState[item.id])).length;
+          badgeEl.textContent = `${done} / ${items.length}`;
+        }
+
+        function renderChecklist() {
+          listEl.innerHTML = '';
+          items.forEach((item) => {
+            const isDone = Boolean(checkedState[item.id]);
+
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('aria-pressed', String(isDone));
+            btn.className = [
+              'w-full flex items-center gap-3 text-left rounded-2xl px-3.5 py-2.5 border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300',
+              isDone
+                ? 'bg-blush-50/95 dark:bg-blush-500/15 border-blush-200 dark:border-blush-400/35'
+                : 'bg-cream-100/75 dark:bg-plum-800/65 hover:bg-blush-50/60 dark:hover:bg-plum-800 border-cream-200 dark:border-plum-700/70',
+            ].join(' ');
+
+            const circle = document.createElement('span');
+            circle.className = [
+              'flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200',
+              isDone
+                ? 'bg-blush-400 border-blush-400 text-white'
+                : 'border-blush-300 dark:border-plum-700 bg-cream-50 dark:bg-plum-900',
+            ].join(' ');
+            circle.innerHTML = isDone
+              ? '<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>'
+              : '';
+
+            const label = document.createElement('span');
+            label.className = [
+              'text-sm leading-snug transition-colors duration-200',
+              isDone
+                ? 'line-through text-cocoa-500 dark:text-cream-100/45'
+                : 'text-cocoa-800 dark:text-cream-100/90',
+            ].join(' ');
+            label.textContent = item.text;
+
+            btn.appendChild(circle);
+            btn.appendChild(label);
+
+            btn.addEventListener('click', () => {
+              const nextVal = !Boolean(checkedState[item.id]);
+              checkedState[item.id] = nextVal;
+              store.set('jumana_checkin', JSON.stringify(checkedState));
+              renderChecklist();
+              updateBadge();
+
+              reactionEl.classList.remove('note-fade-in');
+              void reactionEl.offsetWidth;
+              if (nextVal) {
+                reactionEl.textContent = item.reaction;
+              } else {
+                reactionEl.textContent = 'No rush at all—only whenever you feel up to it.';
+              }
+              reactionEl.classList.add('note-fade-in');
+            });
+
+            li.appendChild(btn);
+            listEl.appendChild(li);
+          });
+        }
+
+        renderChecklist();
+        updateBadge();
+      }
+
+      /* -------------------------------------------------------------------
+         6. "IF YOU CAN'T SETTLE DOWN" — 4s / 4s / 4s BREATHING CIRCLE
+      ------------------------------------------------------------------- */
+      function initBreathingCircle() {
+        const toggleBtn = document.getElementById('breath-toggle-btn');
+        const btnText = document.getElementById('breath-btn-text');
+        const outer = document.getElementById('breath-outer');
+        const mid = document.getElementById('breath-mid');
+        const core = document.getElementById('breath-core');
+        const phaseEl = document.getElementById('breath-phase');
+        const secondsEl = document.getElementById('breath-seconds');
+
+        const steps = [
+          {
+            label: 'Breathe in slowly...',
+            seconds: 4,
+            outerScale: 1.48,
+            midScale: 1.36,
+            coreScale: 1.15,
+          },
+          {
+            label: 'Hold it gently...',
+            seconds: 4,
+            outerScale: 1.48,
+            midScale: 1.36,
+            coreScale: 1.15,
+          },
+          {
+            label: 'Let it all out...',
+            seconds: 4,
+            outerScale: 1.0,
+            midScale: 1.0,
+            coreScale: 1.0,
+          },
+        ];
+
+        let running = false;
+        let stepIndex = 0;
+        let remaining = 4;
+        let timerId = null;
+
+        function renderStep(step) {
+          phaseEl.textContent = step.label;
+          secondsEl.textContent = `${remaining}s`;
+          outer.style.transform = `scale(${step.outerScale})`;
+          mid.style.transform = `scale(${step.midScale})`;
+          core.style.transform = `scale(${step.coreScale})`;
+        }
+
+        function start() {
+          running = true;
+          stepIndex = 0;
+          remaining = steps[0].seconds;
+          btnText.textContent = 'Pause';
+          renderStep(steps[0]);
+
+          timerId = window.setInterval(() => {
+            remaining -= 1;
+            if (remaining <= 0) {
+              stepIndex = (stepIndex + 1) % steps.length;
+              remaining = steps[stepIndex].seconds;
+              renderStep(steps[stepIndex]);
+            } else {
+              secondsEl.textContent = `${remaining}s`;
+            }
+          }, 1000);
+        }
+
+        function pause() {
+          running = false;
+          if (timerId) {
+            window.clearInterval(timerId);
+            timerId = null;
+          }
+          btnText.textContent = 'Start breathing';
+          phaseEl.textContent = 'Paused';
+          secondsEl.textContent = '4 · 4 · 4';
+          outer.style.transform = 'scale(1)';
+          mid.style.transform = 'scale(1)';
+          core.style.transform = 'scale(1)';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+          if (running) {
+            pause();
+          } else {
+            start();
+          }
+        });
+      }
+
+      /* -------------------------------------------------------------------
+         7. SOFT RAIN WEB AUDIO GENERATOR (STRICTLY OFF BY DEFAULT)
+         Uses blended pink/brown noise through gentle lowpass & highpass
+         filters with slow organic volume breathing so it sounds like warm
+         rain outside a bedroom window—never harsh static.
+      ------------------------------------------------------------------- */
+      function initSoftRainAudio() {
+        const rainBtn = document.getElementById('rain-toggle-btn');
+        const rainLabel = document.getElementById('rain-label');
+        const iconOff = document.getElementById('rain-icon-off');
+        const iconOn = document.getElementById('rain-icon-on');
+
+        let audioCtx = null;
+        let rainSource = null;
+        let masterGain = null;
+        let lfoOsc = null;
+        let isPlaying = false;
+
+        function updateUI() {
+          rainBtn.setAttribute('aria-pressed', String(isPlaying));
+          if (isPlaying) {
+            iconOff.classList.add('hidden');
+            iconOn.classList.remove('hidden');
+            rainLabel.textContent = 'Soft Rain: On';
+          } else {
+            iconOff.classList.remove('hidden');
+            iconOn.classList.add('hidden');
+            rainLabel.textContent = 'Soft Rain';
+          }
+        }
+
+        function createSoftRainBuffer(ctx) {
+          // 5 seconds of seamless warm brown-pink noise
+          const durationSec = 5;
+          const length = ctx.sampleRate * durationSec;
+          const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
+
+          for (let ch = 0; ch < 2; ch++) {
+            const output = buffer.getChannelData(ch);
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            let brown = 0;
+
+            for (let i = 0; i < length; i++) {
+              const white = Math.random() * 2 - 1;
+
+              // Warm pink noise component
+              b0 = 0.99886 * b0 + white * 0.0555179;
+              b1 = 0.99332 * b1 + white * 0.0750759;
+              b2 = 0.96900 * b2 + white * 0.1538520;
+              b3 = 0.86650 * b3 + white * 0.3104856;
+              b4 = 0.55000 * b4 + white * 0.5329522;
+              b5 = -0.7616 * b5 - white * 0.0168980;
+              const pink = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.032;
+              b6 = white * 0.115926;
+
+              // Deep brown noise component for cozy warmth
+              brown = (brown + 0.02 * white) / 1.02;
+
+              // Gentle blend of brown + pink noise
+              output[i] = brown * 0.45 + pink * 0.55;
+            }
+
+            // Smooth crossfade at loop boundaries to prevent any audible click
+            const fadeSamples = Math.floor(ctx.sampleRate * 0.2);
+            for (let i = 0; i < fadeSamples; i++) {
+              const ratio = i / fadeSamples;
+              const endIdx = length - fadeSamples + i;
+              output[i] = output[i] * ratio + output[endIdx] * (1 - ratio);
+            }
+          }
+
+          return buffer;
+        }
+
+        function startRain() {
+          try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+
+            if (!audioCtx) {
+              audioCtx = new AudioCtx();
+            }
+            if (audioCtx.state === 'suspended') {
+              audioCtx.resume();
+            }
+
+            rainSource = audioCtx.createBufferSource();
+            rainSource.buffer = createSoftRainBuffer(audioCtx);
+            rainSource.loop = true;
+
+            // Remove sub-bass rumble
+            const highpass = audioCtx.createBiquadFilter();
+            highpass.type = 'highpass';
+            highpass.frequency.value = 110;
+
+            // Softly roll off harsh high frequencies so it sounds like cozy rain on a window
+            const lowpass = audioCtx.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.value = 680;
+            lowpass.Q.value = 0.5;
+
+            // Very slow organic filter swell so the rain feels alive and natural
+            lfoOsc = audioCtx.createOscillator();
+            lfoOsc.type = 'sine';
+            lfoOsc.frequency.value = 0.11;
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 120;
+            lfoOsc.connect(lfoGain);
+            lfoGain.connect(lowpass.frequency);
+
+            masterGain = audioCtx.createGain();
+            const now = audioCtx.currentTime;
+            masterGain.gain.setValueAtTime(0.0001, now);
+            masterGain.gain.exponentialRampToValueAtTime(0.28, now + 1.4);
+
+            rainSource.connect(highpass);
+            highpass.connect(lowpass);
+            lowpass.connect(masterGain);
+            masterGain.connect(audioCtx.destination);
+
+            rainSource.start();
+            lfoOsc.start();
+            isPlaying = true;
+            updateUI();
+          } catch (err) {
+            isPlaying = false;
+            updateUI();
+          }
+        }
+
+        function stopRain() {
+          isPlaying = false;
+          updateUI();
+
+          if (audioCtx && masterGain && rainSource) {
+            try {
+              const now = audioCtx.currentTime;
+              masterGain.gain.cancelScheduledValues(now);
+              masterGain.gain.setTargetAtTime(0.0001, now, 0.2);
+
+              const srcToStop = rainSource;
+              const lfoToStop = lfoOsc;
+              window.setTimeout(() => {
+                try {
+                  srcToStop.stop();
+                  srcToStop.disconnect();
+                  if (lfoToStop) {
+                    lfoToStop.stop();
+                    lfoToStop.disconnect();
+                  }
+                } catch (err) {
+                  // Ignore already stopped audio nodes
+                }
+              }, 450);
+            } catch (err) {
+              // Ignore cleanup errors
+            }
+          }
+
+          rainSource = null;
+          lfoOsc = null;
+          masterGain = null;
+        }
+
+        rainBtn.addEventListener('click', () => {
+          if (isPlaying) {
+            stopRain();
+          } else {
+            startRain();
+          }
+        });
+
+        updateUI();
+      }
+
+      /* -------------------------------------------------------------------
+         INITIALIZE ALL FEATURES ON PAGE LOAD
+      ------------------------------------------------------------------- */
+      document.addEventListener('DOMContentLoaded', () => {
+        initAmbientFloaters();
+        initThemeToggle();
+        initNotesFromMoora();
+        initHugButton();
+        initTinyCheckIn();
+        initBreathingCircle();
+        initSoftRainAudio();
+      });
+    })();
+  </script>
+</body>
+</html>
